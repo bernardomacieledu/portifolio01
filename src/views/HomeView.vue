@@ -1,70 +1,88 @@
 <script setup>
 import HeaderComponent from '../components/HeaderComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
+import { ref } from 'vue';
+
+const cartoes = ref([
+    {
+        id: 1,
+        title: "ShopEase",
+        description: null,
+        image: "shopease.png",
+        emoji: null,
+        categorias: [
+            "Mobile", "Application", "E-commerce"],
+    },
+    {
+        id: 2,
+        title: "Insightly",
+        image: null,
+        emoji: "💡",
+        description: "Developed a SaaS-based analytics dashboard for Insightly, focusing on providing actionable insights through a user-centric design. The dashboard improved data accessibility and was adopted by 80% of users within the first three months.",
+        categorias: [
+            "Web 3.0", "HTML", "Dashboard"],
+    },
+    {
+        id: 3,
+        title: "ShopEase",
+        description: null,
+        image: "shopease.png",
+        emoji: null,
+        categorias: [
+            "Mobile", "Application", "E-commerce"],
+    },
+    {
+        id: 4,
+        title: "Insightly",
+        image: null,
+        emoji: "💡",
+        description: "Developed a SaaS-based analytics dashboard for Insightly, focusing on providing actionable insights through a user-centric design. The dashboard improved data accessibility and was adopted by 80% of users within the first three months.",
+        categorias: [
+            "Web 3.0", "HTML", "Dashboard"],
+    },
+]);
+
 </script>
 
 <template>
-  
+
     <HeaderComponent />
-  <main>
+    <main>
         <section class="banner">
 
             <h1>Hi, I’m <span>Alex</span></h1>
 
             <p>
-                a <strong>UI/UX Designer</strong> based in <strong>Los Angeles</strong>. With over <strong>3 years of experience</strong>, I specialize in creating
+                a <strong>UI/UX Designer</strong> based in <strong>Los Angeles</strong>. With over <strong>3 years of
+                    experience</strong>, I specialize in creating
                 user-friendly digital products that solve real-world problems.
             </p>
         </section>
 
         <section class="cards">
             <ul>
-                <li>
-                    <h3>ShopEase</h3>
-                    <p><img src="/public/images/shopease.png" alt="imagem celular"></p>
+                <li v-for="card in cartoes">
+                    <h3>{{ card.title }}</h3>
+                    <p v-if="card.image != null">
+                        <img :src="'/images/' + card.image" :alt="card.image">
+                    </p>
+                    <div v-if="card.emoji != null">
+                        <p class="emogi">{{ card.emoji }}</p>
+                        <p>{{ card.description }}</p>
+                    </div>
                     <ul>
-                        <li>Mobile</li>
-                        <li>Application</li>
-                        <li>E-commerce</li>
-                    </ul>
-                </li>
-                <li>
-                     <h3>Insightly</h3>
-                     <p class="emogi">💡</p>
-                     <p>
-                        Developed a SaaS-based analytics dashboard for Insightly, focusing on providing actionable insights through a user-centric design. The dashboard improved data accessibility and was adopted by 80% of users within the first three months.
-                     </p>
-                     <ul>
-                        <li>Web 3.0</li>
-                        <li>HTML</li>
-                        <li>Dashboard</li>
-                    </ul>
-                </li>
-                <li>
-                    <h3>ShopEase</h3>
-                    <p><img src="../../public/images/shopease.png" alt="imagem celular"></p>
-                    <ul>
-                        <li>Mobile</li>
-                        <li>Application</li>
-                        <li>E-commerce</li>
-                    </ul>
-                </li>
-                <li>
-                     <h3>Insightly</h3>
-                     <p class="emogi">💡</p>
-                     <p>
-                        Developed a SaaS-based analytics dashboard for Insightly, focusing on providing actionable insights through a user-centric design. The dashboard improved data accessibility and was adopted by 80% of users within the first three months.
-                     </p>
-                     <ul>
-                        <li>Web 3.0</li>
-                        <li>HTML</li>
-                        <li>Dashboard</li>
+                        <li v-for="cat in card.categorias">{{ cat }}</li>
                     </ul>
                 </li>
             </ul>
         </section>
     </main>
-    <FooterComponent />
+    <FooterComponent />shopease.png
+    Insightly
+
+    💡
+
+    Developed a SaaS-bas
 
 </template>
 
